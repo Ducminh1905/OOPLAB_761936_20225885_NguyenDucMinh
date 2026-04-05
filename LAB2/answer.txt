@@ -7,4 +7,4 @@ Trả lời: Java là ngôn ngữ lập trình Pass by value(truyền giá trị
 Trả lời: Vì phương thức swap chỉ hoán đổi các bản sao của tham chiếu (o1 và o2), không ảnh hưởng đến tham chiếu gốc (jungleDVD 
 và cinderellaDVD) trong main.
 -Question: After the call of changeTitle(jungleDVD, cinderellaDVD.getTitle()) why is the title of the JungleDVD changed?
-Trả lời: 
+Trả lời: Vì phương thức changeTitle thay đổi trực tiếp thuộc tính của đối tượng mà tham chiếu trỏ tới, nên tiêu đề của jungleDVD trong main cũng bị thay đổi.

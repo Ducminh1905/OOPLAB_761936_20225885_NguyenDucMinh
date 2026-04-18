@@ -10,17 +10,22 @@ public class Aims {
 
         Cart cart = new Cart();
 
-        cart.addDVD(dvd1);
-        cart.addDVD(dvd2);
-        cart.addDVD(dvd3);
-        cart.addDVD(dvd4);
-        cart.addDVD(dvd5);
+        cart.addDigitalVideoDisc(dvd1);
+        cart.addDigitalVideoDisc(dvd2);
+        cart.addDigitalVideoDisc(dvd3);
+        cart.addDigitalVideoDisc(dvd4);
+        cart.addDigitalVideoDisc(dvd5);
 
-        cart.addDVD(dvd1, dvd2, dvd3);
+        // test overloading (varargs)
+        cart.addDigitalVideoDisc(dvd1, dvd2, dvd3);
 
-        cart.removeDVD(dvd1);
-        cart.removeDVD(dvd3);
+        cart.removeDigitalVideoDisc(dvd1);
+        cart.removeDigitalVideoDisc(dvd3);
 
         cart.displayCart();
+
+        // test search
+        cart.searchByTitle("star");
+        cart.searchById(2);
     }
 }

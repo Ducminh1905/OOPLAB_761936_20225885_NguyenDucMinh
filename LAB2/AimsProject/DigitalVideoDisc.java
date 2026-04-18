@@ -11,6 +11,7 @@ public class DigitalVideoDisc {
     private int length;
     private double cost;
 
+    // ================= GETTER =================
     public int getId() { return id; }
     public String getTitle() { return title; }
     public String getCategory() { return category; }
@@ -18,6 +19,12 @@ public class DigitalVideoDisc {
     public int getLength() { return length; }
     public double getCost() { return cost; }
 
+    // ================= SETTER =================
+    public void setTitle(String title) {
+        this.title = title;
+    }
+
+    // ================= CONSTRUCTOR =================
     public DigitalVideoDisc(String title) {
         this.title = title;
         this.id = ++nbDigitalVideoDiscs;
@@ -47,6 +54,17 @@ public class DigitalVideoDisc {
         this.id = ++nbDigitalVideoDiscs;
     }
 
+    public boolean isMatch(String title) {
+        return this.title != null &&
+               this.title.toLowerCase().contains(title.toLowerCase());
+    }
+
+    @Override
+    public String toString() {
+        return "DVD - " + title + " - " + category + " - "
+                + director + " - " + length + ": " + cost + "$";
+    }
+
     @Override
     public boolean equals(Object obj) {
         if (this == obj) return true;
@@ -54,6 +72,12 @@ public class DigitalVideoDisc {
 
         DigitalVideoDisc other = (DigitalVideoDisc) obj;
 
-        return this.title != null && this.title.equals(other.title);
+        if (this.title == null) return other.title == null;
+        return this.title.equals(other.title);
+    }
+
+    @Override
+    public int hashCode() {
+        return title == null ? 0 : title.hashCode();
     }
 }

@@ -1,10 +1,10 @@
-package AimsProject.hust.soict.dsai.test.disc;
+package AimsProject.src.hust.soict.dsai.test.disc;
 
-import AimsProject.DigitalVideoDisc;
+import AimsProject.src.hust.soict.dsai.aims.disc.DigitalVideoDisc;
 
 public class TestPassingParameter {
 
-    // swap sai
+    // swap sai 
     public static void swap(DigitalVideoDisc o1, DigitalVideoDisc o2) {
         DigitalVideoDisc temp = o1;
         o1 = o2;
@@ -16,7 +16,7 @@ public class TestPassingParameter {
         dvd.setTitle(title);
     }
 
-    // swap đúng
+    // swap đúng 
     public static void swapCorrect(DigitalVideoDisc o1, DigitalVideoDisc o2) {
         String tempTitle = o1.getTitle();
         o1.setTitle(o2.getTitle());

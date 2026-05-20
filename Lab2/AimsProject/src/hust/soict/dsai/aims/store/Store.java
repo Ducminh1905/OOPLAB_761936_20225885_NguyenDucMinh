@@ -1,51 +1,125 @@
 package hust.soict.dsai.aims.store;
 
-import hust.soict.dsai.aims.disc.DigitalVideoDisc;
+import java.util.ArrayList;
+
+import hust.soict.dsai.aims.media.Media;
 
 public class Store {
-    public static final int MAX_ITEMS_IN_STORE = 100;
-    private DigitalVideoDisc[] itemsInStore = new DigitalVideoDisc[MAX_ITEMS_IN_STORE];
-    private int qtyInStore = 0;
+
+    // ================= ATTRIBUTES =================
+
+    private ArrayList<Media> itemsInStore
+            = new ArrayList<Media>();
 
     // ================= ADD =================
-    public void addDVD(DigitalVideoDisc dvd) {
-        if (dvd == null) return;
 
-        if (qtyInStore < MAX_ITEMS_IN_STORE) {
-            itemsInStore[qtyInStore++] = dvd;
-            System.out.println(dvd.getTitle() + " has been added to store.");
+    public void addMedia(Media media) {
+
+        if (media == null) return;
+
+        if (!itemsInStore.contains(media)) {
+
+            itemsInStore.add(media);
+
+            System.out.println(
+                    media.getTitle()
+                    + " has been added to store."
+            );
+
         } else {
-            System.out.println("Store is full!");
+
+            System.out.println(
+                    media.getTitle()
+                    + " already exists in store."
+            );
         }
     }
 
     // ================= REMOVE =================
-    public void removeDVD(DigitalVideoDisc dvd) {
-        for (int i = 0; i < qtyInStore; i++) {
-            if (itemsInStore[i].getTitle().equals(dvd.getTitle())) {
 
-                // shift left
-                for (int j = i; j < qtyInStore - 1; j++) {
-                    itemsInStore[j] = itemsInStore[j + 1];
-                }
+    public void removeMedia(Media media) {
 
-                itemsInStore[--qtyInStore] = null;
+        if (itemsInStore.contains(media)) {
 
-                System.out.println(dvd.getTitle() + " has been removed from store.");
-                return;
-            }
+            itemsInStore.remove(media);
+
+            System.out.println(
+                    media.getTitle()
+                    + " has been removed from store."
+            );
+
+        } else {
+
+            System.out.println(
+                    "Media not found in store!"
+            );
         }
-        System.out.println("DVD not found in store!");
     }
 
     // ================= DISPLAY =================
-    public void displayStore() {
-        System.out.println("***********************STORE***********************");
 
-        for (int i = 0; i < qtyInStore; i++) {
-            System.out.println((i + 1) + ". " + itemsInStore[i]);
+    public void displayStore() {
+
+        System.out.println(
+                "***********************STORE***********************"
+        );
+
+        for (int i = 0;
+             i < itemsInStore.size();
+             i++) {
+
+            System.out.println(
+                    (i + 1)
+                    + ". "
+                    + itemsInStore.get(i)
+            );
         }
 
-        System.out.println("***************************************************");
+        System.out.println(
+                "***************************************************"
+        );
+    }
+
+    // ================= SEARCH =================
+
+    public void searchByTitle(String title) {
+
+        boolean found = false;
+
+        for (Media media : itemsInStore) {
+
+            if (media.getTitle()
+                    .toLowerCase()
+                    .contains(title.toLowerCase())) {
+
+                System.out.println(media);
+
+                found = true;
+            }
+        }
+
+        if (!found) {
+
+            System.out.println(
+                    "No match found"
+            );
+        }
+    }
+
+    // ================= FIND MEDIA =================
+
+    public Media findMediaByTitle(String title) {
+
+        for (Media media : itemsInStore) {
+
+            if (media != null
+                    && media.getTitle()
+                    .equalsIgnoreCase(title)) {
+
+                return media;
+            }
+        }
+
+        return null;
     }
 }

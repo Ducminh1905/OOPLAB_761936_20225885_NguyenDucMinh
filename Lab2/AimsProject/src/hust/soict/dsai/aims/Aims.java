@@ -14,7 +14,7 @@ import hust.soict.dsai.aims.store.Store;
 
 public class Aims {
 
-    public static void main(String[] args) {
+    public static void main(String[] args) throws hust.soict.dsai.aims.exception.PlayerException, hust.soict.dsai.aims.exception.LimitExceededException {
 
         // ================= CREATE DVD =================
 

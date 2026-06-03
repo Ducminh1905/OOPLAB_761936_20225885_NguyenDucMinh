@@ -1,6 +1,9 @@
 package hust.soict.dsai.aims.cart;
 
 import java.util.ArrayList;
+import javafx.collections.ObservableList;
+import javafx.collections.FXCollections;
+import hust.soict.dsai.aims.exception.LimitExceededException;
 
 import hust.soict.dsai.aims.media.Media;
 
@@ -8,21 +11,27 @@ public class Cart {
 
     // ================= ATTRIBUTES =================
 
-    private ArrayList<Media> itemsOrdered
-            = new ArrayList<Media>();
+    private ObservableList<Media> itemsOrdered
+            = FXCollections.observableArrayList();
 
     // ================= GET ITEMS =================
 
-    public ArrayList<Media> getItemsOrdered() {
+    public ObservableList<Media> getItemsOrdered() {
 
         return itemsOrdered;
     }
 
     // ================= ADD =================
 
-    public void addMedia(Media media) {
+    public static final int MAX_NUMBERS_ORDERED = 20;
+
+    public void addMedia(Media media) throws LimitExceededException {
 
         if (media == null) return;
+
+        if (itemsOrdered.size() >= MAX_NUMBERS_ORDERED) {
+            throw new LimitExceededException("ERROR: The number of media has reached its limit (" + MAX_NUMBERS_ORDERED + ")");
+        }
 
         if (!itemsOrdered.contains(media)) {
 
@@ -44,7 +53,7 @@ public class Cart {
 
     // ================= OVERLOAD VARARGS =================
 
-    public void addMedia(Media... mediaList) {
+    public void addMedia(Media... mediaList) throws LimitExceededException {
 
         for (Media media : mediaList) {
 
@@ -55,7 +64,7 @@ public class Cart {
     // ================= OVERLOAD 2 PARAMS =================
 
     public void addMedia(Media media1,
-                         Media media2) {
+                         Media media2) throws LimitExceededException {
 
         addMedia(media1);
         addMedia(media2);
